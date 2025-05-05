@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-        git branch: 'main', url: 'https://github.com/19Sakthi/Service_B.git'
+        git branch: 'submain', url: 'https://github.com/19Sakthi/Service_B.git'
     }
         }
 
@@ -46,7 +46,7 @@ pipeline {
 
     post {
         success {
-            build job: 'CD-Service-B', parameters: [string(name: 'DOCKER_TAG', value: "${params.DOCKER_TAG}")]
+            build job: 'Service-B-CD', parameters: [string(name: 'DOCKER_TAG', value: "${params.DOCKER_TAG}")]
         }
     }
 }
