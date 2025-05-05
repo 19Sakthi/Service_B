@@ -32,7 +32,7 @@ public class StudentServiceImplService implements StudentServiceInterService {
 
 		log.info("Student saved in DB: {}",studentDto);
 
-		StudentDto studentResponse =restTemplate.postForEntity("http://localhost:8879/saveStudent", savedStudentDto, StudentDto.class).getBody();
+		StudentDto studentResponse =restTemplate.postForEntity("http://localhost:8082/saveStudent", savedStudentDto, StudentDto.class).getBody();
 
 		log.info("Response received from Service A: {}", studentResponse);
 

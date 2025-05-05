@@ -9,13 +9,12 @@ import lombok.Data;
 @Entity
 @Data
 public class StudentEntity {
-	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int bikeNumber;
-	private String bikeName;
-	private String bikeModel;
-	private String bikeType;
+	private int studentID;
+	private String studentName;
 
 
 }
