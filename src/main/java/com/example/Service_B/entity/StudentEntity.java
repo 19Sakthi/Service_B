@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class BikeEntityB {
+public class StudentEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

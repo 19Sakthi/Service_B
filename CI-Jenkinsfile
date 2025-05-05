@@ -46,7 +46,7 @@ pipeline {
 
     post {
         success {
-            build job: 'CD-Microservice-B', parameters: [string(name: 'DOCKER_TAG', value: "${params.DOCKER_TAG}")]
+            build job: 'CD-Service-B', parameters: [string(name: 'DOCKER_TAG', value: "${params.DOCKER_TAG}")]
         }
     }
 }
