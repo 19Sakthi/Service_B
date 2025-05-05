@@ -1,61 +1,65 @@
 pipeline {
     agent any
- 
+
     parameters {
         string(name: 'DOCKER_TAG', defaultValue: 'latest', description: 'Docker Image Tag')
     }
- 
+
     environment {
         IMAGE_NAME = "sakthi921/service_b:${params.DOCKER_TAG}"
         NETWORK_NAME = "kafka_default"
     }
- 
+
     stages {
         stage('Docker Pull') {
             steps {
                 script {
-                  
+                    // Remove old image if it exists
                     sh """
                         docker images -q ${IMAGE_NAME} | xargs -r docker rmi || echo 'No old image to remove'
                     """
-                   
+                    // Pull the latest image
                     sh "docker pull ${IMAGE_NAME}"
                 }
             }
         }
- 
+
         stage('Remove Old Container') {
             steps {
                 script {
+                    // Stop any existing running container
                     sh "docker ps -q -f name=service_b | xargs -r docker stop"
+                    // Remove any stopped container with the name "service_b"
                     sh "docker ps -a -q -f name=service_b | xargs -r docker rm"
                 }
             }
         }
- 
+
         stage('Run Docker Container') {
             steps {
                 script {
-                   script {
-                    sh "docker run -d --name service_b --network ${NETWORK_NAME} -p 8084:8084 -e SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092 ${IMAGE_NAME}"
-                
+                    // Run the Docker container
+                    sh """
+                        docker run -d --name service_b --network ${NETWORK_NAME} -p 8084:8084 \
+                            -e SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092 ${IMAGE_NAME}
+                    """
                 }
             }
         }
- 
+
         stage('Check Container') {
             steps {
                 script {
-                    
+                    // Check if the container is running
                     sh 'docker ps -f name=service_b'
                 }
             }
         }
- 
+
         stage('Stoped') {
             steps {
                 script {
-                    
+                    // Final message when pipeline ends
                     echo 'Pipeline ends without stopping service_b'
                 }
             }
