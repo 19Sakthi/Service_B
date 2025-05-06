@@ -1,0 +1,11 @@
+com\example\Service_B\controller\StudentConsumer.class
+com\example\Service_B\controller\StudentControllerService.class
+com\example\Service_B\entity\StudentEntity.class
+com\example\Service_B\repository\StudentRepositoryService.class
+com\example\Service_B\ServiceInter\StudentServiceInterService.class
+com\example\Service_B\utility\Config.class
+com\example\Service_B\ServiceBApplication.class
+com\example\Service_B\exception\GlobalExceptionHandlerB.class
+com\example\Service_B\ServiceImpl\StudentServiceImplService.class
+com\example\Service_B\dto\StudentDto.class
+com\example\Service_B\utility\ResponseStructure.class
